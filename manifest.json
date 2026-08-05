@@ -1,10 +1,12 @@
 {
   "name": "Sandra, die Malamuten und der Bus",
-  "short_name": "Wildwood",
+  "short_name": "SandraBus",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#F6F2E8",
   "theme_color": "#1F4A3A",
   "orientation": "portrait",
+  "description": "Persönlicher Reisebegleiter für Sandra, Chinook, Cheveyo und den Bus.",
+  "lang": "de",
   "icons": []
 }

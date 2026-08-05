@@ -69,7 +69,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
 
         grid.appendChild(tile);
+tile.addEventListener("click", () => {
 
+    if (!detailBereich || !detailTitel || !detailListe) {
+        return;
+    }
+
+    detailBereich.style.display = "block";
+    detailTitel.textContent = kategorie;
+    detailListe.innerHTML = "";
+
+    const eintraege = daten[kategorie];
+
+    eintraege.forEach((eintrag) => {
+
+        const label = document.createElement("label");
+        label.className = "eintrag";
+
+        label.innerHTML = `
+            <input type="checkbox">
+            <span>${eintrag}</span>
+        `;
+
+        detailListe.appendChild(label);
+
+    });
+
+});
     });
 
 });

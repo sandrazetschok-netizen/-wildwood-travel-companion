@@ -1,0 +1,10 @@
+{
+  "name": "Sandra, die Malamuten und der Bus",
+  "short_name": "Wildwood",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F6F2E8",
+  "theme_color": "#1F4A3A",
+  "orientation": "portrait",
+  "icons": []
+}

@@ -175,3 +175,23 @@ if ("serviceWorker" in navigator) {
     style="width:100%;padding:15px;font-size:17px;border-radius:12px;border:1px solid #ddd;">
 
 </section>
+function fortschrittBerechnen() {
+
+    const checkboxen = document.querySelectorAll("#detailListe input[type='checkbox']");
+
+    if (checkboxen.length === 0) return;
+
+    let erledigt = 0;
+
+    checkboxen.forEach(cb => {
+        if (cb.checked) erledigt++;
+    });
+
+    const prozent = Math.round((erledigt / checkboxen.length) * 100);
+
+    const progress = document.querySelector("progress");
+    const text = document.getElementById("fortschrittText");
+
+    if (progress) progress.value = prozent;
+    if (text) text.textContent = prozent + " % gepackt";
+}

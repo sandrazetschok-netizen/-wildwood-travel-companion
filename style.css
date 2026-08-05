@@ -158,3 +158,26 @@ align-items:center;
 font-size:18px;
 
 }
+.hero{
+    background:linear-gradient(
+        180deg,
+        rgba(31,74,58,.95),
+        rgba(31,74,58,.75)
+    );
+}
+
+.hero h1{
+    text-shadow:0 2px 8px rgba(0,0,0,.35);
+}
+
+.card{
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-2px);
+}
+
+button{
+    cursor:pointer;
+}

@@ -1,0 +1,37 @@
+{
+  "Dokumente": [
+    "Personalausweis",
+    "Reisepass",
+    "Führerschein",
+    "Fahrzeugschein",
+    "Versicherungskarte"
+  ],
+
+  "Hunde": [
+    "Chinook",
+    "Cheveyo",
+    "Impfausweise",
+    "Futter",
+    "Leinen",
+    "Geschirre",
+    "Leuchtie",
+    "Näpfe"
+  ],
+
+  "Medikamente": [
+    "Forthyron",
+    "TWS",
+    "Traumeel",
+    "Zeel",
+    "Ulmenrinde",
+    "Magnesium"
+  ],
+
+  "Camping": [
+    "Stühle",
+    "Tisch",
+    "Markise",
+    "Stromkabel",
+    "Klozusatz"
+  ]
+}

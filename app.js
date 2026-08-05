@@ -56,3 +56,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
 });
+function speichern(schluessel, wert){
+
+    localStorage.setItem(schluessel, wert);
+
+}

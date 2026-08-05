@@ -1,41 +1,46 @@
-// 🌲 Sandra, die Malamuten und der Bus
-// Version 0.1 "Aufbruch"
+// Sandra, die Malamuten und der Bus
+// Version 0.1 – Aufbruch
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Willkommen bei Sandra, die Malamuten und der Bus");
 
-    // Begrüßung je nach Uhrzeit
-    const stunde = new Date().getHours();
+    const progress = document.querySelector("progress");
+    const text = document.querySelector("progress + p");
 
-    let begruessung = "Willkommen zurück, Sandra!";
+    let wert = localStorage.getItem("packstatus");
 
-    if (stunde < 12) {
-        begruessung = "☀️ Guten Morgen, Sandra!";
-    } else if (stunde < 18) {
-        begruessung = "🌤️ Guten Tag, Sandra!";
-    } else {
-        begruessung = "🌙 Guten Abend, Sandra!";
+    if (!wert) {
+        wert = 0;
     }
 
-    const titel = document.querySelector(".hero p");
+    progress.value = wert;
+    text.innerHTML = wert + " % gepackt";
 
-    if (titel) {
-        titel.textContent = begruessung + " Bereit für das nächste Abenteuer.";
-    }
+    const karten = document.querySelectorAll(".tile");
 
-    // Klick auf "Neue Reise"
-    const buttons = document.querySelectorAll("button");
+    karten.forEach(karte => {
 
-    if (buttons.length > 0) {
-        buttons[0].addEventListener("click", () => {
-            alert("🚐 Hier entsteht als Nächstes der Reise-Assistent.");
+        karte.addEventListener("click", () => {
+
+            karte.classList.toggle("aktiv");
+
+            let aktuell = Number(progress.value);
+
+            if (karte.classList.contains("aktiv")) {
+                aktuell += 5;
+            } else {
+                aktuell -= 5;
+            }
+
+            if (aktuell < 0) aktuell = 0;
+            if (aktuell > 100) aktuell = 100;
+
+            progress.value = aktuell;
+            text.innerHTML = aktuell + " % gepackt";
+
+            localStorage.setItem("packstatus", aktuell);
+
         });
-    }
 
-    // Klick auf "Packliste"
-    if (buttons.length > 1) {
-        buttons[1].addEventListener("click", () => {
-            alert("📦 Als Nächstes bauen wir deine komplette Packliste ein.");
-        });
-    }
+    });
+
 });

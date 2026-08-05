@@ -85,7 +85,11 @@ if(reiseButton){
         document.getElementById("reise").innerText = gespeicherteReise;
     }
 
-    reiseButton.addEventListener("click",()=>{
+ reiseButton.addEventListener("click",()=>{
+
+    document.getElementById("reiseFormular").style.display="block";
+
+});
 
         const ziel = prompt("📍 Wohin geht die Reise?");
 
@@ -144,5 +148,32 @@ function fortschrittBerechnen(){
 
 });
     localStorage.setItem(schluessel, wert);
+
+}
+const speichernButton = document.getElementById("reiseSpeichern");
+
+if(speichernButton){
+
+    speichernButton.addEventListener("click",()=>{
+
+        const ziel=document.getElementById("ziel").value;
+        const von=document.getElementById("von").value;
+        const bis=document.getElementById("bis").value;
+
+        const chinook=document.getElementById("chinook").checked;
+        const cheveyo=document.getElementById("cheveyo").checked;
+
+        let text=`${ziel}\n${von} bis ${bis}`;
+
+        if(chinook) text+="\n🐺 Chinook";
+        if(cheveyo) text+="\n🐺 Cheveyo";
+
+        localStorage.setItem("reise",text);
+
+        document.getElementById("reise").innerText=text;
+
+        document.getElementById("reiseFormular").style.display="none";
+
+    });
 
 }

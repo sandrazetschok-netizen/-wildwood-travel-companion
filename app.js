@@ -174,7 +174,7 @@ const speichernButton = document.getElementById("reiseSpeichern");
 if(speichernButton){
 
     speichernButton.addEventListener("click",()=>{
-
+der
         const ziel=document.getElementById("ziel").value;
         const von=document.getElementById("von").value;
         const bis=document.getElementById("bis").value;
@@ -192,6 +192,22 @@ if(speichernButton){
         document.getElementById("reise").innerText=text;
 
         document.getElementById("reiseFormular").style.display="none";
+
+    });
+
+}
+const loeschenButton = document.getElementById("reiseLoeschen");
+
+if (loeschenButton) {
+
+    loeschenButton.addEventListener("click", () => {
+
+        if (!confirm("Reise wirklich löschen?")) return;
+
+        localStorage.removeItem("reise");
+
+        document.getElementById("reise").innerText =
+            "Noch keine Reise geplant";
 
     });
 

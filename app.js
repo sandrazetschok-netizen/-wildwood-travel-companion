@@ -212,3 +212,28 @@ if (loeschenButton) {
     });
 
 }
+const neuerEintrag = document.getElementById("neuerEintrag");
+const hinzufuegen = document.getElementById("hinzufuegen");
+
+if (hinzufuegen) {
+
+    hinzufuegen.addEventListener("click", () => {
+
+        const text = neuerEintrag.value.trim();
+
+        if (text === "") return;
+
+        const liste = document.getElementById("detailListe");
+
+        liste.innerHTML += `
+<label class="eintrag">
+<input type="checkbox">
+<span>${text}</span>
+</label>
+`;
+
+        neuerEintrag.value = "";
+
+    });
+
+}

@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const daten = await antwort.json();
 
     const grid = document.querySelector(".grid");
+    const progress = document.querySelector("progress");
+const fortschrittText = document.getElementById("fortschrittText");
 const suche = document.getElementById("suche");
     grid.innerHTML = "";
 let karten = [];
@@ -46,7 +48,7 @@ let karten = [];
         ${eintrag}
     </label>
     `;
-
+fortschrittBerechnen();
 });
 
 });
@@ -60,8 +62,35 @@ karten.push({
 
 });
 function speichern(schluessel, wert){
-suche.addEventListener("input", () => {
 
+    localStorage.setItem(schluessel, wert);
+
+    fortschrittBerechnen();
+
+}
+suche.addEventListener("input", () => {
+function fortschrittBerechnen(){
+
+    const checkboxen = document.querySelectorAll("#detailListe input[type='checkbox']");
+
+    if(checkboxen.length === 0){
+        return;
+    }
+
+    let erledigt = 0;
+
+    checkboxen.forEach(cb=>{
+        if(cb.checked){
+            erledigt++;
+        }
+    });
+
+    const prozent = Math.round(erledigt / checkboxen.length * 100);
+
+    progress.value = prozent;
+    fortschrittText.innerText = prozent + " % gepackt";
+
+}
     const text = suche.value.toLowerCase();
 
     karten.forEach(k => {

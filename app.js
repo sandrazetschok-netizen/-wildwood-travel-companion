@@ -25,7 +25,7 @@ const fortschrittText = document.getElementById("fortschrittText");
 const suche = document.getElementById("suche");
     grid.innerHTML = "";
 let karten = [];
-    Object.keys(daten).forEach(kategorie => {
+   Object.entries(daten).forEach(([kategorie, eintraege]) => {
 
         const karte = document.createElement("div");
         karte.className = "tile";
@@ -33,7 +33,11 @@ let karten = [];
         karte.innerHTML = `
             <div class="icon">📦</div>
             <strong>${kategorie}</strong><br>
-            <small>${daten[kategorie].length} Einträge</small>
+         <small>${
+Array.isArray(eintraege)
+    ? eintraege.length + " Einträge"
+    : Object.keys(eintraege).length + " Bereiche"
+}</small>
         `;
 
         karte.addEventListener("click", () => {
@@ -56,7 +60,12 @@ onchange="speichern('${schluessel}',this.checked)">
 
 </label>
 `;
-    daten[kategorie].forEach(eintrag => {
+ const liste =
+    Array.isArray(eintraege)
+        ? eintraege
+        : Object.values(eintraege).flat();
+
+liste.forEach(eintrag => {
 
     const schluessel = kategorie + "_" + eintrag;
 

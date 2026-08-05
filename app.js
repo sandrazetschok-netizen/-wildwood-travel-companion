@@ -62,7 +62,33 @@ karten.push({
 
 });
 function speichern(schluessel, wert){
+const reiseButton = document.getElementById("reiseAnlegen");
 
+if(reiseButton){
+
+    const gespeicherteReise = localStorage.getItem("reise");
+
+    if(gespeicherteReise){
+        document.getElementById("reise").innerText = gespeicherteReise;
+    }
+
+    reiseButton.addEventListener("click",()=>{
+
+        const ziel = prompt("📍 Wohin geht die Reise?");
+
+        if(!ziel) return;
+
+        const datum = prompt("📅 Wann geht es los?");
+
+        const text = ziel + "\n" + datum;
+
+        localStorage.setItem("reise",text);
+
+        document.getElementById("reise").innerText = text;
+
+    });
+
+}
     localStorage.setItem(schluessel, wert);
 
     fortschrittBerechnen();

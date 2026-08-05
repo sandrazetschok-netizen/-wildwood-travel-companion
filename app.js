@@ -1,239 +1,75 @@
+// Sandra, die Malamuten und der Bus
+// Version 1.0
+
 document.addEventListener("DOMContentLoaded", async () => {
-const stunde = new Date().getHours();
 
-let begruessung = "🌲 Willkommen zurück, Sandra!";
+    // Begrüßung
+    const begruessung = document.getElementById("begruessung");
 
-if (stunde < 12) {
-    begruessung = "☀️ Guten Morgen, Sandra!";
-} else if (stunde < 18) {
-    begruessung = "🌤️ Guten Tag, Sandra!";
-} else {
-    begruessung = "🌙 Guten Abend, Sandra!";
-}
+    if (begruessung) {
+        const stunde = new Date().getHours();
 
-document.getElementById("begruessung").innerText =
-    begruessung + " Bereit für das nächste Abenteuer.";
-    // Service Worker läuft bereits
+        let text = "🌲 Willkommen zurück, Sandra!";
 
-    // Packliste laden
-    const antwort = await fetch("packliste.json");
-    const daten = await antwort.json();
+        if (stunde < 12) {
+            text = "☀️ Guten Morgen, Sandra!";
+        } else if (stunde < 18) {
+            text = "🌤️ Guten Tag, Sandra!";
+        } else {
+            text = "🌙 Guten Abend, Sandra!";
+        }
 
-    const grid = document.querySelector(".grid");
-    const progress = document.querySelector("progress");
-const fortschrittText = document.getElementById("fortschrittText");
-const suche = document.getElementById("suche");
-    grid.innerHTML = "";
-let karten = [];
-   Object.entries(daten).forEach(([kategorie, eintraege]) => {
-
-        const karte = document.createElement("div");
-        karte.className = "tile";
-
-        karte.innerHTML = `
-            <div class="icon">📦</div>
-            <strong>${kategorie}</strong><br>
-         <small>${
-Array.isArray(eintraege)
-    ? eintraege.length + " Einträge"
-    : Object.keys(eintraege).length + " Bereiche"
-}</small>
-        `;
-
-        karte.addEventListener("click", () => {
-
-    document.getElementById("details").style.display = "block";
-
-    document.getElementById("detailTitel").innerText = kategorie;
-
-    const liste = document.getElementById("detailListe");
-
-    liste.innerHTML += `
-<label class="eintrag">
-
-<input
-type="checkbox"
-${erledigt ? "checked":""}
-onchange="speichern('${schluessel}',this.checked)">
-
-<span>${eintrag}</span>
-
-</label>
-`;
- const liste =
-    Array.isArray(eintraege)
-        ? eintraege
-        : Object.values(eintraege).flat();
-
-liste.forEach(eintrag => {
-
-    const schluessel = kategorie + "_" + eintrag;
-
-    const erledigt = localStorage.getItem(schluessel) === "true";
-
-    liste.innerHTML += `
-    <label style="display:block;margin:10px 0;">
-        <input
-            type="checkbox"
-            ${erledigt ? "checked" : ""}
-            onchange="speichern('${schluessel}',this.checked)">
-        ${eintrag}
-    </label>
-    `;
-fortschrittBerechnen();
-});
-
-});
-
-        grid.appendChild(karte);
-karten.push({
-    element: karte,
-    name: kategorie.toLowerCase()
-});
-    });
-
-});
-function speichern(schluessel, wert){
-const reiseButton = document.getElementById("reiseAnlegen");
-
-if(reiseButton){
-
-    const gespeicherteReise = localStorage.getItem("reise");
-
-    if(gespeicherteReise){
-        document.getElementById("reise").innerText = gespeicherteReise;
+        begruessung.textContent = text + " Bereit für das nächste Abenteuer.";
     }
 
- reiseButton.addEventListener("click",()=>{
+    // Elemente holen
+    const grid = document.querySelector(".grid");
+    const detailBereich = document.getElementById("details");
+    const detailTitel = document.getElementById("detailTitel");
+    const detailListe = document.getElementById("detailListe");
+    const suche = document.getElementById("suche");
 
-    document.getElementById("reiseFormular").style.display="block";
-
-});
-
-        const ziel = prompt("📍 Wohin geht die Reise?");
-
-        if(!ziel) return;
-
-        const datum = prompt("📅 Wann geht es los?");
-
-        const text = ziel + "\n" + datum;
-
-        localStorage.setItem("reise",text);
-
-        document.getElementById("reise").innerText = text;
-
-    });
-
-}
-    localStorage.setItem(schluessel, wert);
-
-    fortschrittBerechnen();
-
-}
-suche.addEventListener("input", () => {
-function fortschrittBerechnen(){
-
-    const checkboxen = document.querySelectorAll("#detailListe input[type='checkbox']");
-
-    if(checkboxen.length === 0){
+    if (!grid) {
         return;
     }
 
-    let erledigt = 0;
+    // Packliste laden
+    let daten = {};
 
-    checkboxen.forEach(cb=>{
-        if(cb.checked){
-            erledigt++;
-        }
-    });
+    try {
 
-    const prozent = Math.round(erledigt / checkboxen.length * 100);
+        const response = await fetch("packliste.json");
+        daten = await response.json();
 
-    progress.value = prozent;
-    fortschrittText.innerText = prozent + " % gepackt";
+    } catch (e) {
 
-}
-    const text = suche.value.toLowerCase();
+        console.error("Packliste konnte nicht geladen werden.", e);
+        return;
 
-    karten.forEach(k => {
+    }
 
-        if(k.name.includes(text)){
-            k.element.style.display = "";
-        }else{
-            k.element.style.display = "none";
-        }
+    // Kacheln erzeugen
+    grid.innerHTML = "";
+
+    const kategorien = Object.keys(daten);
+
+    kategorien.forEach((kategorie) => {
+
+        const tile = document.createElement("div");
+        tile.className = "tile";
+
+        const anzahl = Array.isArray(daten[kategorie])
+            ? daten[kategorie].length
+            : Object.keys(daten[kategorie]).length;
+
+        tile.innerHTML = `
+            <div class="icon">📦</div>
+            <strong>${kategorie}</strong><br>
+            <small>${anzahl} Einträge</small>
+        `;
+
+        grid.appendChild(tile);
 
     });
 
 });
-    localStorage.setItem(schluessel, wert);
-
-}
-const speichernButton = document.getElementById("reiseSpeichern");
-
-if(speichernButton){
-
-    speichernButton.addEventListener("click",()=>{
-der
-        const ziel=document.getElementById("ziel").value;
-        const von=document.getElementById("von").value;
-        const bis=document.getElementById("bis").value;
-
-        const chinook=document.getElementById("chinook").checked;
-        const cheveyo=document.getElementById("cheveyo").checked;
-
-        let text=`${ziel}\n${von} bis ${bis}`;
-
-        if(chinook) text+="\n🐺 Chinook";
-        if(cheveyo) text+="\n🐺 Cheveyo";
-
-        localStorage.setItem("reise",text);
-
-        document.getElementById("reise").innerText=text;
-
-        document.getElementById("reiseFormular").style.display="none";
-
-    });
-
-}
-const loeschenButton = document.getElementById("reiseLoeschen");
-
-if (loeschenButton) {
-
-    loeschenButton.addEventListener("click", () => {
-
-        if (!confirm("Reise wirklich löschen?")) return;
-
-        localStorage.removeItem("reise");
-
-        document.getElementById("reise").innerText =
-            "Noch keine Reise geplant";
-
-    });
-
-}
-const neuerEintrag = document.getElementById("neuerEintrag");
-const hinzufuegen = document.getElementById("hinzufuegen");
-
-if (hinzufuegen) {
-
-    hinzufuegen.addEventListener("click", () => {
-
-        const text = neuerEintrag.value.trim();
-
-        if (text === "") return;
-
-        const liste = document.getElementById("detailListe");
-
-        liste.innerHTML += `
-<label class="eintrag">
-<input type="checkbox">
-<span>${text}</span>
-</label>
-`;
-
-        neuerEintrag.value = "";
-
-    });
-
-}

@@ -79,21 +79,32 @@ tile.addEventListener("click", () => {
     detailTitel.textContent = kategorie;
     detailListe.innerHTML = "";
 
-    const eintraege = daten[kategorie];
+ const eintraege = daten[kategorie];
 
-    eintraege.forEach((eintrag) => {
+eintraege.forEach((eintrag) => {
 
-        const label = document.createElement("label");
-        label.className = "eintrag";
+    const schluessel = kategorie + "_" + eintrag;
 
-        label.innerHTML = `
-            <input type="checkbox">
-            <span>${eintrag}</span>
-        `;
+    const label = document.createElement("label");
+    label.className = "eintrag";
 
-        detailListe.appendChild(label);
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = localStorage.getItem(schluessel) === "true";
 
+    checkbox.addEventListener("change", () => {
+        localStorage.setItem(schluessel, checkbox.checked);
     });
+
+    const span = document.createElement("span");
+    span.textContent = eintrag;
+
+    label.appendChild(checkbox);
+    label.appendChild(span);
+
+    detailListe.appendChild(label);
+
+});
 
 });
     });

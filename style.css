@@ -26,6 +26,7 @@ body{
 
 .hero h1{
     font-size:2rem;
+    
     line-height:1.15;
     margin-bottom:10px;
 }
@@ -101,4 +102,13 @@ nav{
     padding:16px;
     font-size:28px;
     box-shadow:0 -6px 18px rgba(0,0,0,.08);
+}
+.tile.aktiv{
+    background:#5B8C5A;
+    color:white;
+    transform:scale(.97);
+}
+
+.tile.aktiv small{
+    color:white;
 }

@@ -50,16 +50,31 @@
 
 <section class="grid">
 
-<div class="tile">📦 Packliste</div>
+.tile{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.25s;
+}
 
-<div class="tile">🐺 Hunde</div>
+.tile:active{
+    transform:scale(.96);
+}
 
-<div class="tile">🌦 Wetter</div>
+.icon{
+    font-size:42px;
+    margin-bottom:12px;
+}
 
-<div class="tile">💶 Reisekosten</div>
+.tile strong{
+    font-size:18px;
+}
 
-</section>
-
+.tile small{
+    color:#777;
+}
 </main>
 
 <nav>

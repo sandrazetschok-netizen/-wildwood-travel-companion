@@ -23,12 +23,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         karte.addEventListener("click", () => {
 
-            alert(
-                kategorie + "\n\n" +
-                daten[kategorie].join("\n")
-            );
+    document.getElementById("details").style.display = "block";
 
-        });
+    document.getElementById("detailTitel").innerText = kategorie;
+
+    const liste = document.getElementById("detailListe");
+
+    liste.innerHTML = "";
+
+    daten[kategorie].forEach(eintrag => {
+
+        liste.innerHTML += `
+        <label style="display:block;margin:10px 0;">
+            <input type="checkbox">
+            ${eintrag}
+        </label>
+        `;
+
+    });
+
+});
 
         grid.appendChild(karte);
 

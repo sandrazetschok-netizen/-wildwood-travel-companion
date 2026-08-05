@@ -44,8 +44,18 @@ let karten = [];
 
     const liste = document.getElementById("detailListe");
 
-    liste.innerHTML = "";
+    liste.innerHTML += `
+<label class="eintrag">
 
+<input
+type="checkbox"
+${erledigt ? "checked":""}
+onchange="speichern('${schluessel}',this.checked)">
+
+<span>${eintrag}</span>
+
+</label>
+`;
     daten[kategorie].forEach(eintrag => {
 
     const schluessel = kategorie + "_" + eintrag;

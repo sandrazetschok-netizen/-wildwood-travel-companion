@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandra, die Malamuten und der Bus</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sandra, die Malamuten und der Bus</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="hero">
 
-    <div class="overlay">
+<div class="overlay">
 
-        <h1>🌲 Sandra,<br>die Malamuten<br>und der Bus</h1>
+<h1>🌲 Sandra,<br>die Malamuten<br>und der Bus</h1>
 
-        <p>Bereit für das nächste Abenteuer.</p>
+<p>Bereit für das nächste Abenteuer.</p>
 
-        <button>🚐 Neue Reise</button>
+<button id="reiseButton">🚐 Neue Reise</button>
 
-        <button class="secondary">
-            📦 Packliste öffnen
-        </button>
+<button class="secondary" id="packlisteButton">
+📦 Packliste öffnen
+</button>
 
-    </div>
+</div>
 
 </header>
 
@@ -34,7 +34,9 @@
 
 <h2>🚐 Nächste Reise</h2>
 
-<p>Noch keine Reise geplant.</p>
+<p id="reise">
+Noch keine Reise geplant
+</p>
 
 </section>
 
@@ -50,31 +52,36 @@
 
 <section class="grid">
 
-.tile{
-    background:white;
-    border-radius:20px;
-    padding:22px;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.25s;
-}
+<div class="tile">📄 Dokumente</div>
 
-.tile:active{
-    transform:scale(.96);
-}
+<div class="tile">👕 Kleidung</div>
 
-.icon{
-    font-size:42px;
-    margin-bottom:12px;
-}
+<div class="tile">👟 Schuhe</div>
 
-.tile strong{
-    font-size:18px;
-}
+<div class="tile">🧴 Hygiene</div>
 
-.tile small{
-    color:#777;
-}
+<div class="tile">🍳 Küche</div>
+
+<div class="tile">🥩 Lebensmittel</div>
+
+<div class="tile">🐺 Chinook & Cheveyo</div>
+
+<div class="tile">💊 Medikamente</div>
+
+<div class="tile">🚐 Fahrzeug</div>
+
+<div class="tile">🚴 Fahrrad</div>
+
+<div class="tile">📷 Technik</div>
+
+<div class="tile">🏕️ Camping</div>
+
+<div class="tile">🌦 Wetter</div>
+
+<div class="tile">💶 Reisekosten</div>
+
+</section>
+
 </main>
 
 <nav>

@@ -1,5 +1,18 @@
 document.addEventListener("DOMContentLoaded", async () => {
+const stunde = new Date().getHours();
 
+let begruessung = "🌲 Willkommen zurück, Sandra!";
+
+if (stunde < 12) {
+    begruessung = "☀️ Guten Morgen, Sandra!";
+} else if (stunde < 18) {
+    begruessung = "🌤️ Guten Tag, Sandra!";
+} else {
+    begruessung = "🌙 Guten Abend, Sandra!";
+}
+
+document.getElementById("begruessung").innerText =
+    begruessung + " Bereit für das nächste Abenteuer.";
     // Service Worker läuft bereits
 
     // Packliste laden

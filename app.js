@@ -52,12 +52,29 @@ let karten = [];
 });
 
         grid.appendChild(karte);
-
+karten.push({
+    element: karte,
+    name: kategorie.toLowerCase()
+});
     });
 
 });
 function speichern(schluessel, wert){
+suche.addEventListener("input", () => {
 
+    const text = suche.value.toLowerCase();
+
+    karten.forEach(k => {
+
+        if(k.name.includes(text)){
+            k.element.style.display = "";
+        }else{
+            k.element.style.display = "none";
+        }
+
+    });
+
+});
     localStorage.setItem(schluessel, wert);
 
 }

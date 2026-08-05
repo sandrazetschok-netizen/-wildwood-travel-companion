@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const daten = await antwort.json();
 
     const grid = document.querySelector(".grid");
-
+const suche = document.getElementById("suche");
     grid.innerHTML = "";
 
     Object.keys(daten).forEach(kategorie => {

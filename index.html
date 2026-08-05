@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="style.css">
 </head>
-
+<link rel="manifest" href="manifest.json">
 <body>
 
 <header class="hero">
@@ -99,6 +99,10 @@ Noch keine Reise geplant
 </nav>
 
 <script src="app.js"></script>
-
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+}
+</script>
 </body>
 </html>

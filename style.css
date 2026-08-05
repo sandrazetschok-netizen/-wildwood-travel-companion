@@ -149,3 +149,12 @@ transform:translateY(0);
 }
 
 }
+.eintrag{
+
+display:flex;
+
+align-items:center;
+
+font-size:18px;
+
+}

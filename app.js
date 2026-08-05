@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const grid = document.querySelector(".grid");
 const suche = document.getElementById("suche");
     grid.innerHTML = "";
-
+let karten = [];
     Object.keys(daten).forEach(kategorie => {
 
         const karte = document.createElement("div");

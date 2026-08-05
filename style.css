@@ -181,3 +181,20 @@ font-size:18px;
 button{
     cursor:pointer;
 }
+#neuerEintrag{
+
+margin-top:20px;
+
+border-radius:12px;
+
+border:1px solid #ccc;
+
+font-size:16px;
+
+}
+
+#hinzufuegen{
+
+margin-top:10px;
+
+}

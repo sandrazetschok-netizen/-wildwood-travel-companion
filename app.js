@@ -33,14 +33,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     daten[kategorie].forEach(eintrag => {
 
-        liste.innerHTML += `
-        <label style="display:block;margin:10px 0;">
-            <input type="checkbox">
-            ${eintrag}
-        </label>
-        `;
+    const schluessel = kategorie + "_" + eintrag;
 
-    });
+    const erledigt = localStorage.getItem(schluessel) === "true";
+
+    liste.innerHTML += `
+    <label style="display:block;margin:10px 0;">
+        <input
+            type="checkbox"
+            ${erledigt ? "checked" : ""}
+            onchange="speichern('${schluessel}',this.checked)">
+        ${eintrag}
+    </label>
+    `;
+
+});
 
 });
 
